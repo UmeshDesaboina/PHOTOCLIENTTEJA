@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>TEJA DIGITAL STUDIO — Final</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#040404;
+    --muted:#bdb6ad;
+    --gold:#cfa84a;
+    --gold-2:#a67f2a;
+    --accent:linear-gradient(90deg,var(--gold),var(--gold-2));
+  }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:linear-gradient(180deg,#030303 0,#070707 100%);color:#fff;font-family:Montserrat,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%;height:auto;}
+
+/* Header */
+header.site-header{
+  position:fixed;left:0;right:0;top:0;z-index:9999;background:rgba(0,0,0,0.86);backdrop-filter:blur(6px);
+  padding:18px 0;
+}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:64px;height:64px;border-radius:10px;background:var(--gold);color:#070707;display:grid;place-items:center;font-family:Playfair Display;font-weight:700}
+.site-title{font-weight:700;font-family:Playfair Display}
+.site-sub{color:var(--muted);font-size:13px}
+
+/* nav */
+.nav{display:flex;gap:18px;align-items:center}
+.nav a{color:#fff;padding:8px 10px;border-radius:6px;position:relative;font-weight:700}
+.nav a::after{content:"";position:absolute;left:8px;right:8px;bottom:4px;height:2px;background:transparent;border-radius:2px;transition:background .18s, transform .18s;transform:scaleX(0)}
+.nav a:hover::after{background:var(--gold);transform:scaleX(1)}
+
+/* main / hero */
+main{padding-top:110px}
+.hero{max-width:1240px;margin:0 auto;display:flex;gap:36px;align-items:flex-start;justify-content:space-between;padding:40px 20px;flex-wrap:wrap}
+.hero-left{flex:1;min-width:320px}
+.hero-left h1{margin:0;font-family:Playfair Display,serif;font-size:56px;line-height:1}
+.hero-left p{color:var(--muted);margin-top:14px;max-width:720px;font-size:16px}
+.hero-cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* media-card fixed portrait size (A = EXACT) */
+.media-card{
+  width:360px;height:480px;border-radius:16px;overflow:hidden;background:#060606;border:1px solid rgba(255,255,255,0.02);box-shadow:0 24px 60px rgba(0,0,0,0.7);
+  display:block;
+}
+.media-card img,.media-card iframe{width:100%;height:100%;object-fit:cover;display:block}
+
+/* slider */
+.hero-slider{flex:0 0 auto}
+.hero-track{display:flex;transition:transform .6s ease;will-change:transform}
+.hero-slide{min-width:360px;height:480px}
+.hero-dots{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.dot{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,0.12);cursor:pointer;box-shadow:0 8px 18px rgba(0,0,0,0.4)}
+.dot.active{background:var(--gold)}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:40px 20px}
+.service-card{background:#0b0b0b;border-radius:12px;padding:28px;text-align:center;border:2px solid rgba(207,168,74,0.06)}
+.service-card .big{font-family:Playfair Display,serif;font-size:40px;color:var(--gold);font-weight:700}
+.service-card .label{margin-top:10px;color:var(--muted);font-weight:700}
+
+/* filters */
+.filter-row{display:flex;gap:12px;flex-wrap:wrap;margin:28px 20px;align-items:center}
+.filter-btn{padding:12px 18px;border-radius:999px;border:2px solid rgba(207,168,74,0.6);background:transparent;color:var(--gold);font-weight:700;cursor:pointer}
+.filter-btn.inactive{background:transparent;color:var(--muted);border-color:rgba(255,255,255,0.06)}
+.filter-btn.active{background:var(--accent);color:#070707;box-shadow:0 12px 48px rgba(166,127,42,0.08)}
+
+/* grids */
+.section{padding:8px 20px 40px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:1200px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+
+/* testimonial */
+.test-wrap{display:flex;gap:18px;overflow:auto;padding:12px;margin:20px 0}
+.test-card{min-width:300px;background:#0d0d0d;border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.02);box-shadow:0 18px 48px rgba(0,0,0,0.6)}
+.test-card .avatar{width:48px;height:48px;border-radius:50%;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:10px}
+.test-meta{display:flex;align-items:center;gap:12px}
+
+/* contact */
+.contact-wrap{display:grid;grid-template-columns:1fr 420px;gap:18px;margin:30px 20px}
+.contact-card{background:#0b0b0b;border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.02)}
+.contact-card label{color:var(--muted);display:block;margin-top:12px}
+.contact-card input, .contact-card select, .contact-card textarea{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:#080808;color:#fff;margin-top:8px}
+.btn-gold{padding:10px 14px;border-radius:10px;border:0;background:var(--accent);color:#070707;font-weight:800;margin-top:12px;cursor:pointer}
+
+/* footer */
+footer{margin-top:30px;background:#070707;color:var(--muted);padding:36px 20px;border-top:1px solid rgba(255,255,255,0.02)}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.92);z-index:99999;padding:12px}
+.lb.show{display:flex}
+.lb .inner{width:360px;height:480px;border-radius:12px;overflow:hidden;background:#000}
+.lb-close{position:fixed;right:18px;top:18px;background:#ff2b2b;border:0;color:#fff;padding:10px 12px;border-radius:8px;cursor:pointer}
+
+/* floating */
+.float-wrap{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:12px;align-items:flex-end;z-index:9999}
+.float-btn{width:160px;height:56px;border-radius:28px;display:flex;gap:12px;align-items:center;padding:10px 14px;background:linear-gradient(90deg,#111,#222);border:2px solid rgba(207,168,74,0.18);cursor:pointer}
+.float-btn .icon{width:42px;height:42px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:#070707;font-weight:700}
+
+/* small */
+.center{display:flex;justify-content:center}
+.muted{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <div class="logo">TD</div>
+      <div>
+        <div class="site-title">TEJA DIGITAL STUDIO</div>
+        <div class="site-sub">Engagement • Wedding • Pre-wedding</div>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HERO -->
+  <section id="home" class="hero wrap">
+    <div class="hero-left">
+      <h1>Beautiful stories. Timeless frames.</h1>
+      <p>We specialize in Engagements, Weddings, Pre-weddings, Birthday photography and more — delivered with cinematic edits and premium albums.</p>
+      <div class="hero-cta">
+        <button class="btn-gold">Book Now</button>
+      </div>
+    </div>
+
+    <!-- RIGHT slider (4 static slides) -->
+    <div class="hero-slider">
+      <div class="hero-track" id="heroTrack">
+        <div class="hero-slide media-card"><img src="1.jpg" alt="Slide 1"></div>
+        <div class="hero-slide media-card"><img src="1.jpg" alt="Slide 2"></div>
+        <div class="hero-slide media-card"><img src="1.jpg" alt="Slide 3"></div>
+        <div class="hero-slide media-card"><img src="1.jpg" alt="Slide 4"></div>
+      </div>
+
+      <div class="hero-dots center" id="heroDots">
+        <div class="dot active" data-i="0"></div>
+        <div class="dot" data-i="1"></div>
+        <div class="dot" data-i="2"></div>
+        <div class="dot" data-i="3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <div class="wrap">
+      <h2>Our Services</h2>
+      <div class="services" role="list">
+        <div class="service-card"><div class="big">80+</div><div class="label">Engagement Shoots</div></div>
+        <div class="service-card"><div class="big">120+</div><div class="label">Wedding Photography</div></div>
+        <div class="service-card"><div class="big">60+</div><div class="label">Birthday Photography</div></div>
+        <div class="service-card"><div class="big">40+</div><div class="label">Saree Ceremony Shoots</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <div class="filter-row wrap">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn inactive" data-filter="wedding">Wedding</button>
+    <button class="filter-btn inactive" data-filter="prewedding">Pre-Wedding</button>
+    <button class="filter-btn inactive" data-filter="birthday">Birthday</button>
+    <button class="filter-btn inactive" data-filter="saree">Saree</button>
+    <button class="filter-btn inactive" data-filter="engagement">Engagement</button>
+    <button class="filter-btn inactive" data-filter="kids">Kids</button>
+    <button class="filter-btn inactive" data-filter="maternity">Maternity</button>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="section wrap">
+    <div class="section-row" style="display:flex;justify-content:space-between;align-items:center">
+      <h2>OUR PORTFOLIO</h2>
+      <div class="muted">Click image to view</div>
+    </div>
+
+    <div class="grid portfolio-grid" style="margin-top:16px">
+      <!-- MANUAL: 4 items (you can replace src individually later) -->
+      <div class="photo media-card" data-category="wedding"><img src="1.jpg" alt="Wedding Portrait 1"></div>
+      <div class="photo media-card" data-category="prewedding"><img src="1.jpg" alt="Prewedding Portrait 1"></div>
+      <div class="photo media-card" data-category="birthday"><img src="1.jpg" alt="Birthday Portrait 1"></div>
+      <div class="photo media-card" data-category="saree"><img src="1.jpg" alt="Saree Portrait 1"></div>
+    </div>
+  </section>
+
+  <!-- SOCIAL GALLERY -->
+  <section id="social" class="section wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h2>Follow us</h2>
+      <div class="muted">Instagram & Facebook</div>
+    </div>
+
+    <div class="grid social-grid" style="margin-top:16px">
+      <div class="media-card"><img src="1.jpg" alt="Social 1"></div>
+      <div class="media-card"><img src="1.jpg" alt="Social 2"></div>
+      <div class="media-card"><img src="1.jpg" alt="Social 3"></div>
+      <div class="media-card"><img src="1.jpg" alt="Social 4"></div>
+    </div>
+  </section>
+
+  <!-- REELS & VIDEOS -->
+  <section id="reels" class="section wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h2>Reels & Videos</h2>
+      <div class="muted">YouTube / Instagram Reels</div>
+    </div>
+
+    <div class="grid reels-grid" style="margin-top:16px">
+      <!-- Manual entries (use embed links or YouTube IDs as shown) -->
+      <div class="media-card">
+        <!-- IG embed (may require Instagram to allow embed) -->
+        <iframe src="https://www.instagram.com/reel/DRo-yJnjP1v/embed" referrerpolicy="no-referrer" allowfullscreen></iframe>,
+         <iframe src="https://www.instagram.com/reel/DRo-yJnjP1v/embed" referrerpolicy="no-referrer" allowfullscreen></iframe>
+      </div>
+<div class="media-card">
+  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+</div>
+
+<div class="media-card">
+  <iframe src="https://www.youtube.com/embed/NEAsHXgmqas" allowfullscreen></iframe>
+</div>
+
+
+      <div class="media-card">
+        <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" allowfullscreen></iframe>
+      </div>
+
+      <div class="media-card">
+        <iframe src="https://www.youtube.com/embed/5NV6Rdv1a3I" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="section wrap">
+    <h2>WHAT OUR CLIENTS SAY</h2>
+    <div class="test-wrap" id="testWrap">
+      <div class="test-card">
+        <div class="test-meta">
+          <div class="avatar"><img src="1.jpg" style="width:48px;height:48px;object-fit:cover;border-radius:50%"></div>
+          <div>
+            <div style="font-weight:700">Sheela Reddy</div>
+            <div style="color:var(--gold)">★★★★</div>
+          </div>
+        </div>
+        <div class="review muted" style="margin-top:12px">Cinematic edits and premium album. Highly recommended.</div>
+      </div>
+
+      <div class="test-card">
+        <div class="test-meta">
+          <div class="avatar"><img src="1.jpg" style="width:48px;height:48px;object-fit:cover;border-radius:50%"></div>
+          <div>
+            <div style="font-weight:700">Sravani</div>
+            <div style="color:var(--gold)">★★★★★</div>
+          </div>
+        </div>
+        <div class="review muted" style="margin-top:12px">Professional & friendly photographers. Loved the photos!</div>
+      </div>
+
+      <div class="test-card">
+        <div class="test-meta">
+          <div class="avatar"><img src="1.jpg" style="width:48px;height:48px;object-fit:cover;border-radius:50%"></div>
+          <div>
+            <div style="font-weight:700">Ananya</div>
+            <div style="color:var(--gold)">★★★★★</div>
+          </div>
+        </div>
+        <div class="review muted" style="margin-top:12px">Beautiful shots and quick delivery.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT + MAP -->
+  <section id="contact" class="section wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap">
+      <div class="contact-card" style="flex:1;min-width:320px">
+        <h3 style="margin:0">Send a message</h3>
+        <div class="muted" style="margin-top:8px">We respond quickly on WhatsApp — fill & click send.</div>
+
+        <label>Name</label>
+        <input id="cname" placeholder="Your name">
+
+        <label>Phone</label>
+        <input id="cphone" placeholder="+91 ...">
+
+        <label>Session</label>
+        <select id="ctype">
+          <option>Engagement</option><option>Wedding</option><option>Pre-wedding</option><option>Birthday</option><option>Saree Ceremony</option>
+        </select>
+
+        <label>Message / Date</label>
+        <textarea id="cmsg" rows="4" placeholder="Message & date"></textarea>
+
+        <button class="btn-gold" onclick="sendToWhatsApp()">Send to WhatsApp</button>
+      </div>
+
+      <div class="contact-card" style="width:420px">
+        <h4 style="margin:0">Our Location</h4>
+        <div class="muted" style="margin-top:8px">Teja Digital Studio — Uppal, Hyderabad</div>
+        <div style="margin-top:12px;border-radius:10px;overflow:hidden">
+          <iframe width="420" height="350" src="https://www.google.com/maps?q=Teja+Digital+Studio+Uppal+Hyderabad&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <div style="font-family:Playfair Display,serif;font-weight:700;font-size:18px">TEJA DIGITAL STUDIO</div>
+        <div class="muted" style="margin-top:8px">Engagement • Wedding • Pre-wedding</div>
+        <div style="margin-top:12px">4-123/14/A Street No 6, Padmavathi Colony, Uppal, Hyderabad</div>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 8px 0">Quick Links</h4>
+        <div class="muted" style="margin-top:8px">
+          <a href="#portfolio">Portfolio</a><br>
+          <a href="#services">Services</a><br>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 8px 0">Follow Us</h4>
+        <div style="display:flex;gap:10px;align-items:center;margin-top:8px">
+          <!-- placeholder social icons (you can replace href) -->
+          <a href="#" aria-label="Instagram"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="url(#g)"/><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#feda75"/><stop offset="1" stop-color="#d62976"/></linearGradient></defs></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#1877F2"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#FF0000"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lightbox" aria-hidden="true">
+  <div class="inner"><img id="lbImg" src="" alt="Preview"></div>
+  <button class="lb-close" id="lbClose">Close</button>
+</div>
+
+<!-- FLOATING -->
+<div class="float-wrap" aria-hidden="false">
+  <div class="float-btn" onclick="window.location.href='tel:+919959996939'">
+    <div class="icon">📞</div><div style="font-weight:800">Call Now</div>
+  </div>
+  <div class="float-btn" onclick="window.location.href='https://wa.me/919959996939'">
+    <div class="icon">💬</div><div style="font-weight:800">Chat Now</div>
+  </div>
+</div>
+
+<script>
+/* HERO slider (auto + dots) */
+const heroTrack = document.getElementById('heroTrack');
+const heroSlides = document.querySelectorAll('.hero-slide');
+const heroDots = document.querySelectorAll('.dot');
+let heroIndex = 0;
+function showHero(i){
+  if(i < 0) i = heroSlides.length - 1;
+  if(i >= heroSlides.length) i = 0;
+  // use width from first slide (responsive)
+  const w = heroSlides[0].offsetWidth;
+  heroTrack.style.transform = `translateX(-${i * w}px)`;
+  heroDots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+  heroIndex = i;
+}
+heroDots.forEach(d => d.addEventListener('click', e => showHero(Number(e.currentTarget.dataset.i))));
+let heroTimer = setInterval(()=> showHero(heroIndex + 1), 3000);
+document.querySelector('.hero-slider').addEventListener('mouseenter', ()=> clearInterval(heroTimer));
+document.querySelector('.hero-slider').addEventListener('mouseleave', ()=> { clearInterval(heroTimer); heroTimer = setInterval(()=> showHero(heroIndex + 1), 3000);} );
+
+/* Lightbox (open on any image click) */
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+document.querySelectorAll('.media-card img, .photo img').forEach(img=>{
+  img.addEventListener('click', (e)=>{
+    lbImg.src = e.currentTarget.src;
+    lb.classList.add('show');
+    lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  });
+});
+document.getElementById('lbClose').addEventListener('click', ()=>{
+  lb.classList.remove('show');
+  lbImg.src = '';
+  document.body.style.overflow = '';
+});
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ lb.classList.remove('show'); lbImg.src=''; document.body.style.overflow=''; } });
+
+/* Filters (manual DOM items) */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const photos = document.querySelectorAll('.photo');
+
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    filterBtns.forEach(b=>{ b.classList.remove('active'); b.classList.add('inactive'); });
+    btn.classList.add('active'); btn.classList.remove('inactive');
+    const f = btn.dataset.filter;
+    photos.forEach(p=>{
+      if(f === 'all'){ p.style.display = 'block'; return; }
+      const cat = p.dataset.category || '';
+      p.style.display = (cat === f) ? 'block' : 'none';
+    });
+  });
+});
+
+/* Testimonials auto-scroll */
+const testWrap = document.getElementById('testWrap');
+let tIdx = 0;
+setInterval(()=>{
+  tIdx = (tIdx + 1) % document.querySelectorAll('.test-card').length;
+  testWrap.scrollTo({ left: tIdx * 340, behavior: 'smooth' });
+}, 3500);
+
+/* Contact -> WhatsApp redirect */
+function sendToWhatsApp(){
+  const name = encodeURIComponent(document.getElementById('cname').value || 'No name');
+  const phone = encodeURIComponent(document.getElementById('cphone').value || '');
+  const type = encodeURIComponent(document.getElementById('ctype').value || '');
+  const msg = encodeURIComponent(document.getElementById('cmsg').value || '');
+  const text = `Hi Teja Digital Studio!%0AName: ${name}%0APhone: ${phone}%0ASession: ${type}%0AMessage: ${msg}`;
+  window.open('https://wa.me/919959996939?text='+text, '_blank');
+}
+
+/* ensure initial slider placement uses measured width */
+window.addEventListener('load', ()=> showHero(0));
+window.addEventListener('resize', ()=> showHero(heroIndex));
+</script>
+
+</body>
+</html>
