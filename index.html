@@ -6,6 +6,7 @@
 <title>TEJA DIGITAL STUDIO — Final Premium Version (Updated)</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script async src="//www.instagram.com/embed.js"></script>
 
 <style>
   /* ---------- Root / Base ---------- */
@@ -156,6 +157,7 @@
     .hero{flex-direction:column-reverse;align-items:stretch}
     .hero-slider{max-width:100%;flex-basis:auto}
   }
+  
 </style>
 </head>
 <body>
@@ -486,24 +488,72 @@
   }
 
   // Social place-holder links (opens in new tab)
-  const instagramLinks = [
-    "https://www.instagram.com/p/C9t6Vyly-CK/",
-    "https://www.instagram.com/p/C9t6Vyly-CK/?igsh=emY2c3I4bjFwdzA=",
-    "https://www.instagram.com/p/Ch57646sith/?igsh=czVxaGtncmtrbHdi",
-    "https://www.instagram.com/p/CgqRQ_Rokeh/?igsh=c2JneGE5Z3k4bDZi",
-    "https://www.instagram.com/p/Ch58m0OsYvf/?igsh=MTBnYjY0cTRsbW9nNQ==",
-    "https://www.instagram.com/p/CgqRQ_Rokeh/?igsh=c2JneGE5Z3k4bDZi",
-  ];
-  function renderSocial(){
-    const c = document.getElementById('socialGrid');
-    c.innerHTML = '';
-    instagramLinks.forEach(url=>{
-      const d = document.createElement('div');
-      d.className = 'media-card';
-      d.innerHTML = `<a href="${url}" target="_blank" rel="noopener" style="display:block;padding:18px;color:#fff;text-decoration:none;text-align:center">View Instagram Post</a>`;
-      c.appendChild(d);
-    });
+  
+// Add any Instagram post OR reel links here
+const instagramLinks = [
+  "https://www.instagram.com/p/C9t6Vyly-CK/",
+  "https://www.instagram.com/reel/C9CBOe1y6DF/?igsh=MWlteXdjZWdrbWliag==",
+  "https://www.instagram.com/p/Ch57646sith/?igsh=czVxaGtncmtrbHdi",
+  "https://www.instagram.com/reel/CgqRQ_Rokeh/?igsh=c2JneGE5Z3k4bDZi",
+  "https://www.instagram.com/p/Ch58m0OsYvf/?igsh=MTBnYjY0cTRsbW9nNQ==",
+  "https://www.instagram.com/reel/CgqRQ_Rokeh/?igsh=c2JneGE5Z3k4bDZi",
+  "https://www.instagram.com/reel/C82Q3q0uqmJ/?utm_source=ig_web_button_share_sheet",
+];
+
+// Get shortcode for both Post (/p/) and Reel (/reel/)
+function getShortcode(url) {
+  url = url.split("?")[0]; // remove ?igsh etc
+
+  if (url.includes("/p/")) {
+    return { type: "p", code: url.split("/p/")[1].split("/")[0] };
   }
+  if (url.includes("/reel/")) {
+    return { type: "reel", code: url.split("/reel/")[1].split("/")[0] };
+  }
+  return null;
+}
+
+function renderSocial() {
+  const grid = document.getElementById("socialGrid");
+  grid.innerHTML = "";
+
+  instagramLinks.forEach((url) => {
+    const data = getShortcode(url);
+    const card = document.createElement("div");
+    card.className = "media-card";
+    card.style.padding = "0";
+
+    if (!data) {
+      card.innerHTML = `
+        <div style="color:#aaa;padding:20px;text-align:center;">
+          Invalid Instagram Link
+        </div>`;
+      grid.appendChild(card);
+      return;
+    }
+
+    // Official embed URL
+    const embedUrl = `https://www.instagram.com/${data.type}/${data.code}/embed`;
+
+    card.innerHTML = `
+      <iframe
+        src="${embedUrl}"
+        width="100%"
+        height="450"
+        frameborder="0"
+        scrolling="no"
+        allowfullscreen
+        allowtransparency="true"
+        style="border:0;border-radius:12px;width:100%;height:450px;">
+      </iframe>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+// Call function
+renderSocial();
 
   // Reels: convert youtube links automatically to embed format
   function convertToEmbed(url){
